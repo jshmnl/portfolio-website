@@ -54,7 +54,7 @@ export default function HomePage() {
             {/* Alternative links */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="mailto:joshuamanuel@example.com"
+                href="mailto:joshuamanuel052204@gmail.com"
                 className="inline-flex items-center gap-3 px-8 py-3 border border-gold-600 text-gold-400 font-sans font-semibold text-xs tracking-[0.2em] uppercase hover:bg-gold-500/8 transition-all duration-200"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

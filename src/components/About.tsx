@@ -99,7 +99,7 @@ export default function About() {
             </div>
             <div className="mt-8 text-center lg:text-left">
               <p className="font-serif text-gold-400 text-2xl font-semibold">Joshua Manuel</p>
-              <p className="text-navy-300 font-sans text-sm mt-1">Full-Stack Developer · Philippines</p>
+              <p className="text-navy-300 font-sans text-sm mt-1">Full-Stack Developer · Pasay City, Philippines</p>
               <div className="mt-4 inline-flex items-center gap-2 border border-gold-700/40 bg-gold-500/5 px-3 py-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
                 <span className="text-gold-600 font-sans text-xs tracking-wide">Available for opportunities</span>
@@ -133,10 +133,11 @@ export default function About() {
               <p>
                 My thesis produced a{' '}
                 <span className="text-gold-400 font-medium">
-                  Philippine labor law case analysis tool
+                  Philippine labor law case research platform
                 </span>{' '}
-                — a hybrid rule-based prediction engine powered by Z.AI legal reasoning that makes
-                professional-grade case analysis accessible to anyone.
+                — a custom rule-based machine learning engine with 14 weighted legal signals and a
+                normalized confidence scoring system that makes professional-grade case assessment
+                accessible to anyone.
               </p>
             </div>
 

@@ -68,7 +68,7 @@ const ACTIONS: Action[] = [
     id: 'proj-thesis',
     name: 'View — Labor Law Case Analyzer',
     section: 'Projects',
-    keywords: 'thesis labor law ai prediction',
+    keywords: 'thesis labor law machine learning prediction',
     perform: () => { window.location.href = '/projects/labor-law-case-analyzer' },
   },
   // ── Actions ──
@@ -84,7 +84,7 @@ const ACTIONS: Action[] = [
     name: 'Send Email',
     section: 'Actions',
     keywords: 'email contact hire',
-    perform: () => { window.location.href = 'mailto:joshuamanuel@example.com' },
+    perform: () => { window.location.href = 'mailto:joshuamanuel052204@gmail.com' },
   },
 ]
 

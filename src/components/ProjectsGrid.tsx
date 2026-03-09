@@ -31,7 +31,7 @@ export default function ProjectsGrid() {
           className={`text-navy-300 font-sans text-base max-w-2xl mb-16 reveal ${visible ? 'visible' : ''}`}
           style={{ transitionDelay: '0.1s' }}
         >
-          Production systems built for real institutional use — from government treasury offices to academic AI research.
+          Production systems built for real institutional use — from government treasury offices to academic legal research.
         </p>
 
         {/* Cards */}

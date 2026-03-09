@@ -38,13 +38,13 @@ export const projects: Project[] = [
   {
     slug: 'project-monitoring-system',
     title: 'Government Procurement Monitoring System',
-    subtitle: 'OJT Project @ BTR-DAD | Full-Stack Developer & DBA',
+    subtitle: 'OJT Project @ Bureau of the Treasury — DAD | Full-Stack Developer & DBA',
     year: 2026,
     role: 'Full-Stack Developer & Database Administrator',
     context: 'On-the-Job Training',
-    stack: ['Laravel 12', 'PHP 8.2', 'PostgreSQL', 'Alpine.js', 'Tailwind CSS', 'Chart.js', 'Vite'],
+    stack: ['Laravel 12', 'PHP 8.2', 'PostgreSQL', 'Supabase', 'Alpine.js', 'Tailwind CSS', 'Chart.js', 'Vite'],
     problem:
-      'The Bureau of Treasury – Domestic Debt Management division managed hundreds of government procurement projects manually, with no centralized system to track budget allocations, procurement modes, or project lifecycle status across fiscal years. This created bottlenecks in accountability and reporting — with no audit trail for who changed what, when.',
+      'The Bureau of the Treasury – Database Administration Division managed hundreds of government procurement projects manually, with no centralized system to track budget allocations, procurement modes, or project lifecycle status across fiscal years. This created bottlenecks in accountability and reporting — with no audit trail for who changed what, when.',
     architectureDescription:
       'Built on Laravel\'s MVC pattern with PostgreSQL as the primary data store. Blade templates handle server-side rendering, with Alpine.js adding reactivity for form interactions, status dropdowns, and table filters — no full page reloads needed. Chart.js integrates directly into Blade views for budget visualizations across CO and MOOE classifications. The audit trail is implemented through Eloquent model observers that fire on every create, update, delete, and restore event — capturing old and new field values as JSON snapshots and writing them to audit_logs. Role-based access is enforced at the middleware layer before any controller logic executes, ensuring officers cannot access admin routes regardless of URL manipulation.',
     features: [
@@ -114,7 +114,7 @@ export const projects: Project[] = [
       },
     ],
     outcome:
-      'Delivered a production-ready government procurement monitoring system with a complete audit trail, role-based workflows, and multi-dimensional budget tracking across fiscal years — deployed and used by the BTR-DAD division.',
+      'Delivered a production-ready government procurement monitoring system with a complete audit trail, role-based workflows, and multi-dimensional budget tracking across fiscal years — deployed and adopted by the Bureau of the Treasury Database Administration Division.',
     tableCount: 3,
     heroScreenshot: '/screenshots/btr-dashboard.png',
     screenshots: [
@@ -127,22 +127,22 @@ export const projects: Project[] = [
   {
     slug: 'labor-law-case-analyzer',
     title: 'Philippine Labor Law Case Analyzer',
-    subtitle: 'Thesis Project | Full-Stack Developer & ML Engineer',
+    subtitle: 'Thesis Project | Full-Stack Developer',
     year: 2026,
-    role: 'Full-Stack Developer, AI Integration Engineer',
+    role: 'Full-Stack Developer & ML Systems Engineer',
     context: 'Undergraduate Thesis',
-    stack: ['Laravel 12', 'PHP 8.2', 'Tailwind CSS 4', 'Z.AI API', 'DOMPDF', 'Vite', 'PostgreSQL'],
+    stack: ['Laravel 12', 'PHP 8.2', 'Tailwind CSS 4', 'DOMPDF', 'Vite', 'PostgreSQL'],
     problem:
-      'Philippine labor law practitioners and workers lack accessible tools to objectively assess the likely outcome of illegal dismissal cases. Legal signal analysis requires deep domain expertise, making pre-litigation assessment expensive and inaccessible to ordinary workers who cannot afford legal counsel.',
+      'Philippine labor law practitioners and workers lack accessible tools to objectively assess the likely outcome of illegal dismissal cases. Signal analysis requires deep domain expertise, making pre-litigation assessment expensive and inaccessible to ordinary workers who cannot afford legal counsel.',
     architectureDescription:
-      'A Laravel MVC application backed by PostgreSQL. PDF uploads are processed server-side — a custom text extraction pipeline parses the document and pattern-matches against 14 legal signal definitions. The rule-based prediction engine is a dedicated PHP service class that independently scores each signal by weighted value, then computes a normalized confidence score on a 0.0–1.0 scale. Z.AI API requests are dispatched synchronously during analysis, with the full LLM response stored as JSONB alongside the rule-based scores for re-rendering without re-querying. All analysis data lives in a single case_analyses table using JSON columns for nested structures like signal breakdowns, legal doctrines, and recommended reliefs.',
+      'A Laravel MVC application backed by PostgreSQL. PDF uploads are processed server-side — a custom text extraction pipeline parses the document and pattern-matches against 14 legal signal definitions. The rule-based prediction engine is a dedicated PHP service class that independently scores each signal by weighted value, then computes a normalized confidence score on a 0.0–1.0 scale. Signal weights were derived through domain research and iterative calibration against real case outcomes. All analysis data lives in a single case_analyses table using JSON columns for nested structures like signal breakdowns, legal doctrines, and recommended reliefs.',
     features: [
       'Dual input: PDF upload or manual signal entry',
       'Rule-based prediction engine with 14 weighted legal signals',
-      'Z.AI-powered analysis — doctrines, reliefs, precedents',
+      'Weighted signal scoring with normalized 0.0–1.0 confidence output',
       'Automated PDF text extraction & signal auto-detection',
       'Case history with filtering, search, and CSV export',
-      'Confidence scoring system on a 0.0–1.0 scale',
+      'DOMPDF-generated downloadable case analysis reports',
     ],
     schema: [
       {
@@ -162,13 +162,13 @@ export const projects: Project[] = [
           { name: 'reliefs',                 type: 'JSON',                                                 nullable: true,  note: 'Reinstatement, backwages, damages' },
           { name: 'similar_cases',           type: 'JSON',                                                 nullable: true  },
           { name: 'strengths_weaknesses',    type: 'JSON',                                                 nullable: true  },
-          { name: 'ai_analysis',             type: 'JSON',                                                 nullable: true,  note: 'Z.AI full response object' },
+          { name: 'analysis_result',          type: 'JSON',                                                 nullable: true,  note: 'Full analysis response object' },
           { name: 'created_at / updated_at', type: 'TIMESTAMP',                                            nullable: false },
         ],
       },
     ],
     outcome:
-      'Built an accessible legal tech tool that democratizes labor law case analysis using a hybrid rule-based + AI prediction system, achieving reliable outcome prediction for Philippine illegal dismissal cases — making professional-grade legal assessment available to anyone.',
+      'Built an accessible legal research platform that democratizes labor law case analysis using a custom rule-based machine learning prediction engine, achieving reliable outcome prediction for Philippine illegal dismissal cases — making professional-grade case assessment available to anyone.',
     tableCount: 1,
     heroScreenshot: '/screenshots/thesis-landing.png',
     screenshots: [

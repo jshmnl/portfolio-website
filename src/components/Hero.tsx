@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useKBar } from 'kbar'
 import InteractiveGrid from './InteractiveGrid'
 import MagneticButton from './MagneticButton'
@@ -23,15 +23,30 @@ const SCROLL_FADE = {
   hidden: { opacity: 0 },
   show: { opacity: 0.5, transition: { delay: 1.6, duration: 0.8 } },
 }
-const ROLE_TAGS = ['Web', 'Mobile', 'Full-Stack'] as const
+
+const ROLES = [
+  'Full-Stack Engineer',
+  'Web Developer',
+  'Mobile Developer',
+  'Backend Architect',
+  'Database Engineer',
+] as const
 
 // ── Component ──────────────────────────────────────────────────
 export default function Hero() {
   const { query } = useKBar()
   const [isMac, setIsMac] = useState(false)
+  const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
     setIsMac(navigator.platform.toUpperCase().includes('MAC'))
+  }, [])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length)
+    }, 2600)
+    return () => clearInterval(id)
   }, [])
 
   return (
@@ -60,7 +75,7 @@ export default function Hero() {
       >
         {/* Eye-brow */}
         <motion.p variants={ITEM} className="text-gold-600 text-xs font-sans font-medium tracking-[0.38em] uppercase mb-8">
-          Full-Stack Developer · Philippines
+          Full-Stack Developer · Pasay City, Philippines
         </motion.p>
 
         {/* Name + animated underline */}
@@ -74,26 +89,29 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Role tags — glow on hover */}
-        <motion.div variants={ITEM} className="flex flex-wrap items-center justify-center gap-1 mt-2 mb-5">
-          {ROLE_TAGS.map((tag, i) => (
-            <span key={tag} className="inline-flex items-center">
+        {/* Cycling role — auto-animates every 2.6s */}
+        <motion.div variants={ITEM} className="flex items-center justify-center gap-4 mt-2 mb-5">
+          {/* Left rule */}
+          <span className="hidden sm:block w-12 h-px bg-gradient-to-r from-transparent to-gold-700/50" />
+
+          {/* Fixed-height window so layout never shifts */}
+          <div className="relative flex items-center justify-center h-10 md:h-12 overflow-hidden min-w-[260px] md:min-w-[320px]">
+            <AnimatePresence mode="wait">
               <motion.span
-                className="font-serif text-xl md:text-2xl lg:text-3xl text-navy-200 font-normal tracking-wide px-3 py-1 border border-transparent rounded-sm cursor-default select-none"
-                whileHover={{
-                  color: '#f0c040',
-                  borderColor: 'rgba(212,175,55,0.38)',
-                  boxShadow: '0 0 22px 4px rgba(212,175,55,0.22)',
-                  transition: { duration: 0.18 },
-                }}
+                key={ROLES[roleIndex]}
+                initial={{ opacity: 0, y: 22, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0,  filter: 'blur(0px)' }}
+                exit={{    opacity: 0, y: -22, filter: 'blur(6px)' }}
+                transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute font-serif text-2xl md:text-3xl text-gold-300 font-semibold tracking-wide select-none"
               >
-                {tag}
+                {ROLES[roleIndex]}
               </motion.span>
-              {i < ROLE_TAGS.length - 1 && (
-                <span className="text-gold-700/60 mx-1 font-sans font-light text-lg select-none">·</span>
-              )}
-            </span>
-          ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Right rule */}
+          <span className="hidden sm:block w-12 h-px bg-gradient-to-l from-transparent to-gold-700/50" />
         </motion.div>
 
         {/* Tagline */}
